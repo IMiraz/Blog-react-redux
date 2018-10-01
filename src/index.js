@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {BrowserRouter, Route, Link}  from 'react-router-dom'
-import './index.css';
-import App from './App';
+import Navbar from './Navbar'
+import Welcome from './Welcome'
 import registerServiceWorker from './registerServiceWorker';
 
 
@@ -18,12 +18,8 @@ const contact = () => {
 ReactDOM.render(
     <BrowserRouter>
         <div>
-  <ul>
-   <li><Link to="/">root page</Link></li>
-   <li><Link to="/about">about page</Link></li>
-   <li> <Link to="/contact">contact page</Link></li>
-  </ul>
- <Route exact path="/" component={App}/>
+<Navbar/>
+ <Route exact path="/" component={Welcome}/>
  <Route path="/about" component={about}/>
  <Route path="/contact" component={contact} />
         </div>
