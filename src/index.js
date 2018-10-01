@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {BrowserRouter, Route, Link}  from 'react-router-dom'
-import Navbar from './Navbar'
-import Welcome from './Welcome'
+import Navbar from './Components/Navbar'
+import Welcome from './Components/Welcome'
+import Footer from './Components/Footer'
 import registerServiceWorker from './registerServiceWorker';
 
 
@@ -22,6 +23,7 @@ ReactDOM.render(
  <Route exact path="/" component={Welcome}/>
  <Route path="/about" component={about}/>
  <Route path="/contact" component={contact} />
+ <Footer/>
         </div>
     </BrowserRouter>
 
