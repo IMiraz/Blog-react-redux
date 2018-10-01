@@ -1,7 +1,9 @@
 import React from 'react'
+import Article from './../Article'
 
 const Welcome = () => {
       return (
+        <div>
         <header className="header header-inverse" style={{backgroundImage: 'url(assets/img/bg-gift.jpg)'}} data-overlay={8}>
         <div className="container text-center">
           <div className="row">
@@ -12,6 +14,16 @@ const Welcome = () => {
           </div>
         </div>
       </header>
+      <main class="main-content bg-gray">
+
+
+      <div className="row">
+        <div className="col-12 col-lg-6 offset-lg-3">
+<Article/>
+        </div>
+        </div>
+</main>
+      </div>
       )
 }
 
