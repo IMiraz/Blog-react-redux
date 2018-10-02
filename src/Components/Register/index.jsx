@@ -60,7 +60,17 @@ validateAll(data, rules, message)
   }
 
 axios.post(`${config.apiUrl}/auth/register`, values)
-.then(res=>console.log(res)).catch(error => console.log(error))
+.then(res=>console.log(res))
+
+.catch(errors => {
+   const formattedError = {};
+ formattedError['email'] = errors.response.data['email'][0];
+ this.setState ({
+ errors:formattedError
+ })
+
+
+})
 
 })
 
