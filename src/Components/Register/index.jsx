@@ -1,6 +1,9 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import {validateAll} from 'indicative'
+import axios  from  'axios'
+
+import config from '../config'
 
 
 
@@ -48,7 +51,17 @@ const rules= {
 
 validateAll(data, rules, message)
 .then(res=>{
-  console.log('SUCCESS')
+
+  const values = {
+ name:this.state.name,
+ email:this.state.email,
+ password:this.state.password
+
+  }
+
+axios.post(`${config.apiUrl}/auth/register`, values)
+.then(res=>console.log(res)).catch(error => console.log(error))
+
 })
 
 .catch(errors=> {
