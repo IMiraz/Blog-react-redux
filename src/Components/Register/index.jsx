@@ -60,14 +60,16 @@ validateAll(data, rules, message)
   }
 
 axios.post(`${config.apiUrl}/auth/register`, values)
-.then(res=>console.log(res))
+.then(res=> {
+ this.props.history.push('/')
+})
 
-.catch(errors => {
-   const formattedError = {};
- formattedError['email'] = errors.response.data['email'][0];
- this.setState ({
- errors:formattedError
- })
+        .catch(errors => {
+          const formattedError = {};
+        formattedError['email'] = errors.response.data['email'][0];
+        this.setState ({
+        errors:formattedError
+        })
 
 
 })
@@ -82,11 +84,11 @@ const formattedError = {}
   errors.forEach(error => formattedError[error.field] = error.message)
   // console.log(formattedError);
 
-  this.setState({
+        this.setState({
 
-errors:formattedError
+      errors:formattedError
 
-})
+      })
 
 
 })
