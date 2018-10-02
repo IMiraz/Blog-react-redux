@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
+import {validateAll} from 'indicative'
 
 
 
@@ -14,10 +15,29 @@ class Signup extends Component {
 
 
 
+
   handerInputChange = (event) => {
   this.setState({
 [event.target.name]: event.target.value
   })
+
+  }
+  handlerSubmit = (event) => {
+event.preventDefault();
+    //console.log(this.state)
+//Validating user data
+ const data = this.state;
+
+const rules= {
+  name:'required|string',
+  email:'required|email',
+ password:'required|string|min:6'
+};
+
+validateAll(data, rules)
+.then(res=>{})
+.catch(error=> { console.log(error)})
+
 
   }
 
@@ -28,7 +48,7 @@ class Signup extends Component {
           <h5 className="text-uppercase text-center">Signup</h5>
           <br />
           <br />
-          <form className="form-type-material">
+          <form className="form-type-material" onSubmit={this.handlerSubmit}>
             <div className="form-group">
               <input type="text" name="name" onChange={this.handerInputChange} className="form-control" placeholder="Username" />
             </div>
