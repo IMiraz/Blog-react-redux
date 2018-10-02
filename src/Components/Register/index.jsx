@@ -60,7 +60,8 @@ validateAll(data, rules, message)
   }
 
 axios.post(`${config.apiUrl}/auth/register`, values)
-.then(res=> {
+.then(response=> {
+   localStorage.setItem('user', JSON.stringify(response.data.data))
  this.props.history.push('/')
 })
 
