@@ -35,7 +35,18 @@ const rules= {
  password:'required|string|min:6|confirmed'
 };
 
-validateAll(data, rules)
+ //Customising Message
+
+ const message = {
+   required:'This field is required',
+  'email.email':' The email is invalid',
+  'password.confirmed': 'the  password confirmation does not match'
+
+ }
+
+
+
+validateAll(data, rules, message)
 .then(res=>{
   console.log('SUCCESS')
 })
