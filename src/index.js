@@ -5,6 +5,7 @@ import Navbar from './Components/Navbar'
 import Welcome from './Components/Welcome'
 import Footer from './Components/Footer'
 import Login from './Components/Login'
+import SingleArticle from './Components/SingleArticle'
 import CreateArticle from './Components/CreateArticle'
 import registerServiceWorker from './registerServiceWorker';
 
@@ -23,10 +24,10 @@ ReactDOM.render(
         <div>
 <Navbar/>
  <Route exact path="/" component={Welcome}/>
-<Route path ="/login" component={Login}/>
+ <Route path ="/login" component={Login}/>
  <Route path="/about" component={about}/>
  <Route path="/contact" component={contact} />
-
+ <Route path="/article/:slug" component={SingleArticle}/>
  <Route path="/articles/create" component={CreateArticle}/>>
  <Footer/>
         </div>
