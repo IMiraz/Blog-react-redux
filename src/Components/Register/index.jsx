@@ -10,7 +10,8 @@ class Signup extends Component {
       name:'',
       email:'',
       password:'',
-      password_confirmation:''
+      password_confirmation:'',
+      errors:{}
       }
 
 
@@ -38,7 +39,23 @@ validateAll(data, rules)
 .then(res=>{
   console.log('SUCCESS')
 })
-.catch(error=> { console.log(error)})
+
+.catch(errors=> {
+
+  //console.log(error)
+const formattedError = {}
+
+  errors.forEach(error => formattedError[error.field] = error.message)
+  // console.log(formattedError);
+
+  this.setState({
+
+errors:formattedError
+
+})
+
+
+})
 
 
   }
@@ -53,12 +70,33 @@ validateAll(data, rules)
           <form className="form-type-material" onSubmit={this.handlerSubmit}>
             <div className="form-group">
               <input type="text" name="name" onChange={this.handerInputChange} className="form-control" placeholder="Username" />
+
+              {
+                this.state.errors['name'] &&
+                <small className="text-danger">{this.state.errors['name']}</small>
+
+              }
             </div>
             <div className="form-group">
-              <input type="text" name="email" onChange={this.handerInputChange} className="form-control" placeholder="Email address" />
+              <input type="text" name="email" onChange={this.handerInputChange}
+             className="form-control" placeholder="Email address" />
+
+
+             {
+              this.state.errors['email'] &&
+              <small className="text-danger">{this.state.errors['email']}</small>
+
+            }
+
             </div>
             <div className="form-group">
               <input type="password" onChange={this.handerInputChange} name="password" className="form-control" placeholder="Password" />
+
+              {
+                this.state.errors['password'] &&
+                <small className="text-danger">{this.state.errors['password']}</small>
+
+              }
             </div>
             <div className="form-group">
               <input type="password" onChange={this.handerInputChange} name="password_confirmation" className="form-control" placeholder="Password (confirm)" />
