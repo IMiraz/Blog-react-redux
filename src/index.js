@@ -5,6 +5,7 @@ import Navbar from './Components/Navbar'
 import Welcome from './Components/Welcome'
 import Footer from './Components/Footer'
 import Login from './Components/Login'
+import Register from './Components/Register'
 import SingleArticle from './Components/SingleArticle'
 import CreateArticle from './Components/CreateArticle'
 import registerServiceWorker from './registerServiceWorker';
@@ -25,6 +26,7 @@ ReactDOM.render(
 <Navbar/>
  <Route exact path="/" component={Welcome}/>
  <Route path ="/login" component={Login}/>
+ <Route path="/register" component={Register}/>
  <Route path="/about" component={about}/>
  <Route path="/contact" component={contact} />
  <Route path="/article/:slug" component={SingleArticle}/>
