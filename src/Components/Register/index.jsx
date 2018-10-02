@@ -10,7 +10,7 @@ class Signup extends Component {
       name:'',
       email:'',
       password:'',
-      passwordConfirm:''
+      password_confirmation:''
       }
 
 
@@ -31,11 +31,13 @@ event.preventDefault();
 const rules= {
   name:'required|string',
   email:'required|email',
- password:'required|string|min:6'
+ password:'required|string|min:6|confirmed'
 };
 
 validateAll(data, rules)
-.then(res=>{})
+.then(res=>{
+  console.log('SUCCESS')
+})
 .catch(error=> { console.log(error)})
 
 
@@ -59,7 +61,7 @@ validateAll(data, rules)
               <input type="password" onChange={this.handerInputChange} name="password" className="form-control" placeholder="Password" />
             </div>
             <div className="form-group">
-              <input type="password" onChange={this.handerInputChange} name="passwordConfirm" className="form-control" placeholder="Password (confirm)" />
+              <input type="password" onChange={this.handerInputChange} name="password_confirmation" className="form-control" placeholder="Password (confirm)" />
             </div>
             <br />
             <button className="btn btn-bold btn-block btn-primary" type="submit">Register</button>
