@@ -30,6 +30,16 @@ authUser:JSON.parse(user)
 
  }
 
+ setAuthUser = (authUser) => {
+
+    this.setState({
+        authUser
+    })
+
+
+
+ }
+
 
 
 
@@ -49,7 +59,7 @@ authUser:JSON.parse(user)
 
         <Route exact path="/" component={Welcome}/>
         <Route path ="/login" component={Login}/>
-        <Route path="/signup" component={Register}/>
+        <Route path="/signup" render={ (props) => <Register {...props} setAuthUser={this.setAuthUser}/> }/>
         <Route path="/article/:slug" component={SingleArticle}/>
         <Route path="/articles/create" component={CreateArticle}/>>
 

@@ -60,10 +60,11 @@ validateAll(data, rules, message)
   }
 
 axios.post(`${config.apiUrl}/auth/register`, values)
-.then(response=> {
-   localStorage.setItem('user', JSON.stringify(response.data.data))
- this.props.history.push('/')
-})
+    .then(response=> {
+      localStorage.setItem('user', JSON.stringify(response.data.data))
+   this.props.setAuthUser(response.data.data)
+    this.props.history.push('/')
+    })
 
         .catch(errors => {
           const formattedError = {};
