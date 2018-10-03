@@ -1,3 +1,5 @@
+
+/* eslint-disable */
 import React from 'react'
 import {Link} from 'react-router-dom'
 import propTypes from 'prop-types'
@@ -8,7 +10,7 @@ const RegisterForm = ({ handerInputChange, handlerSubmit, errors }) => {
 
      return (
 
-       <div
+      <div
          className="mh-fullscreen bg-img center-vh p-20"
          style={{backgroundImage: 'url(assets/img/bg-girl.jpg)'}}
        >

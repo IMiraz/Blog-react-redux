@@ -1,9 +1,11 @@
+/* eslint-disable */
 import React from 'react'
 import {Link} from 'react-router-dom'
 
 const Login = () => {
 
     return (
+
         <div className="mh-fullscreen bg-img center-vh p-20" style={{backgroundImage: 'url(assets/img/bg-girl.jpg)'}}>
   <div className="card card-shadowed p-50 w-400 mb-0" style={{maxWidth: '100%'}}>
     <h5 className="text-uppercase text-center">Login</h5>
