@@ -37,7 +37,7 @@ const RegisterForm = ({ handerInputChange, handlerSubmit, errors }) => {
                <input
           type="text"
           name="email"
-          onChange={this.handerInputChange}
+          onChange={handerInputChange}
           className="form-control"
           placeholder="Email address"
           />
@@ -50,7 +50,7 @@ const RegisterForm = ({ handerInputChange, handlerSubmit, errors }) => {
 
             </div>
             <div className="form-group">
-              <input type="password" onChange={this.handerInputChange} name="password" className="form-control" placeholder="Password" />
+              <input type="password" onChange={handerInputChange} name="password" className="form-control" placeholder="Password" />
 
               {
                 errors.password&&

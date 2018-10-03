@@ -25,21 +25,18 @@ class Signup extends Component {
         })
 
   }
-  handlerSubmit = async (event) => {
+  handlerSubmit = async (event) =>
+  {
+    console.log(this.state)
 event.preventDefault();
-
  try {
-
        const user = await this.props.registerUser(this.state)
-              localStorage.setItem('user', JSON.stringify(user))
               this.props.setAuthUser(user)
               this.props.history.push('/')
 
-            }
-                catch(errors){
+      }
+        catch(errors){
                   this.setState({ errors})
-
-
                 }
 
  }

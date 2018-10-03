@@ -4,52 +4,41 @@ import config from '../Components/config'
 
 export default class AuthService {
 
-async registerUser(data) {
+    async registerUser(data) {
+        const rules = {
+          name: 'required|string',
+          email: 'required|email',
+          password: 'required|string|min:6|confirmed',
+        };
 
+        const messages = {
+          required: 'The {{ field }} is required.',
+          'email.email': 'The email is invalid.',
+          'password.confirmed': 'The password confirmation does not match.',
+        };
 
-    const rules= {
-      name:'required|string',
-      email:'required|email',
-    password:'required|string|min:6|confirmed'
-    };
+        try {
+          await validateAll(data, rules, messages);
 
-//Customising Message
+          const response = await axios.post(`${config.apiUrl}/auth/register`, {
+            name: data.name,
+            email: data.email,
+            password: data.password,
+          });
 
-    const message = {
-      required:'This field is required',
-      'email.email':' The email is invalid',
-      'password.confirmed': 'the  password confirmation does not match'
+          return response.data.data;
+        } catch (errors) {
+          const formattedErrors = {};
+          if (errors.response && errors.response.status === 422) {
+            // eslint-disable-next-line
+            formattedErrors['email'] = errors.response.data['email'][0];
+            return Promise.reject(formattedErrors);
+          }
+          errors.forEach((error) => {
+            formattedErrors[error.field] = error.message;
+          });
+          return Promise.reject(formattedErrors);
+        }
+      }
 
-    }
-
-
-try {
-        await validateAll(data, rules, message)
-        const values = {
-            name:data.name,
-            email:data.email,
-            password:data.password
-
-            }
-        const response = await axios.post(`${config.apiUrl}/auth/register`, values)
-        return response.data.data
-
-}
-
-catch (errors) {
-            const formattedError = {}
-            if(errors.status === 422) {
-                errors.forEach(error => formattedError[error.field] = error.message)
-                // console.log(formattedError);
-                return Promise.reject(formattedError)
-            }
-            errors.forEach(error => formattedError[error.field] = error.message)
-
-            return Promise.reject(formattedError)
-
-
-
-}
-
-}
 }
