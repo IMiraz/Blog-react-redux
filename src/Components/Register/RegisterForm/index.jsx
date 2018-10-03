@@ -1,31 +1,48 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import propTypes from 'prop-types'
+
+
+
 const RegisterForm = ({ handerInputChange, handlerSubmit, errors }) => {
 
      return (
-        <div className="mh-fullscreen bg-img center-vh p-20" style={{backgroundImage: 'url(assets/img/bg-girl.jpg)'}}>
-        <div className="card card-shadowed p-50 w-400 mb-0" style={{maxWidth: '100%'}}>
-          <h5 className="text-uppercase text-center">Signup</h5>
-          <br />
-          <br />
-          <form className="form-type-material" onSubmit={handlerSubmit}>
-            <div className="form-group">
-              <input type="text" name="name" onChange={handerInputChange} className="form-control" placeholder="Username" />
 
-              {
-                errors.name &&
-                <small className="text-danger">{errors.name}</small>
+       <div
+         className="mh-fullscreen bg-img center-vh p-20"
+         style={{backgroundImage: 'url(assets/img/bg-girl.jpg)'}}
+       >
+
+         <div
+           className="card card-shadowed p-50 w-400 mb-0"
+           style={{maxWidth: '100%'}}
+      >
+
+           <h5 className="text-uppercase text-center">Signup</h5>
+           <br/>
+           <br />
+
+           <form className="form-type-material" onSubmit={handlerSubmit}>
+             <div className="form-group">
+               <input type="text" name="name" onChange={handerInputChange} className="form-control" placeholder="Username"/>
+               {
+          errors.name &&
+          <small className="text-danger"> {errors.name} </small>
 
               }
             </div>
-            <div className="form-group">
-              <input type="text" name="email" onChange={this.handerInputChange}
-             className="form-control" placeholder="Email address" />
+             <div className="form-group">
+               <input
+          type="text"
+          name="email"
+          onChange={this.handerInputChange}
+          className="form-control"
+          placeholder="Email address"
+          />
 
-
-             {
-              errors.email &&
-              <small className="text-danger">{errors.email}</small>
+               {
+    errors.email &&
+           <small className="text-danger">{errors.email}</small>
 
             }
 
@@ -54,6 +71,12 @@ const RegisterForm = ({ handerInputChange, handlerSubmit, errors }) => {
 
      )
 
+}
+
+RegisterForm.propTypes = {
+ handerInputChange: propTypes.func.isRequired,
+  handlerSubmit:propTypes.func.isRequired,
+errors:propTypes.objectOf(propTypes.string).isRequired
 }
 
 export default RegisterForm
