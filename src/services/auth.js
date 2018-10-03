@@ -41,4 +41,43 @@ export default class AuthService {
         }
       }
 
+
+      async loginUser(data) {
+        const rules = {
+
+          email: 'required|email',
+          password: 'required|string',
+        };
+
+        const messages = {
+          required: 'The {{ field }} is required.',
+          'email.email': 'The email is invalid.',
+        };
+
+        try {
+
+          await validateAll(data, rules, messages);
+
+          const response = await axios.post(`${config.apiUrl}/auth/login`, {
+            email: data.email,
+            password: data.password,
+          });
+
+          return response.data.data;
+        }
+        catch (errors) {
+          const formattedErrors = {};
+          if (errors.response && errors.response.status === 401) {
+
+            // eslint-disable-next-line
+            formattedErrors['email'] = "Invalid email or password";
+            return Promise.reject(formattedErrors);
+          }
+          errors.forEach((error) => {
+            formattedErrors[error.field] = error.message;
+          });
+          return Promise.reject(formattedErrors);
+        }
+      }
+
 }

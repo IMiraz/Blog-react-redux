@@ -2,8 +2,6 @@ import React, {Component} from 'react'
 
 import  LoginForm from './LoginForm'
 
-
-
 class Login extends Component {
 
    state = {
@@ -18,9 +16,18 @@ class Login extends Component {
 
 }
 
-handlerSubmit = (event) => {
+handlerSubmit = async (event) => {
   event.preventDefault();
   console.log(this.state)
+  try {
+    const user = await this.props.loginUser(this.state)
+           this.props.setAuthUser(user)
+           this.props.history.push('/')
+
+   }
+     catch(errors){
+               this.setState({ errors})
+             }
 
 }
    render() {

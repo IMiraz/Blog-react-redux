@@ -58,11 +58,18 @@ class App extends Component {
 
 
            <Route exact path="/" component={Welcome}/>
-           <Route path ="/login" component={Login}/>
+
+           <Route path ="/login"  render = { (props) =>
+            <Login {...props}
+            loginUser={this.props.authService.loginUser}
+            setAuthUser ={this.setAuthUser} />
+         }
+         />
            <Route path="/signup" render={
-               (props) => <Register {...props}
+               (props) =>
+               <Register {...props}
                  registerUser= {this.props.authService.registerUser}
-                setAuthUser={this.setAuthUser}/> }/>
+                setAuthUser={this.setAuthUser} /> } />
            <Route path="/article/:slug" component={SingleArticle}/>
            <Route path="/articles/create" component={CreateArticle}/>>
 
