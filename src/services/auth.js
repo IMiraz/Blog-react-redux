@@ -24,41 +24,30 @@ async registerUser(data) {
 
 
 try {
-await validateAll(data, rules, message)
+        await validateAll(data, rules, message)
+        const values = {
+            name:data.name,
+            email:data.email,
+            password:data.password
 
-
-          try  {
-            const values = {
-              name:data.name,
-              email:data.email,
-              password:data.password
-
-                }
-    const response = await axios.post(`${config.apiUrl}/auth/register`, values)
-      return response.data.data
-          }
-              catch(errors){
-                const formattedError = {}
-
-                errors.forEach(error => formattedError[error.field] = error.message)
-                // console.log(formattedError);
-                return formattedError
-
-              }
+            }
+        const response = await axios.post(`${config.apiUrl}/auth/register`, values)
+        return response.data.data
 
 }
 
 catch (errors) {
-  const formattedError = {}
+            const formattedError = {}
+            if(errors.status === 422) {
+                errors.forEach(error => formattedError[error.field] = error.message)
+                // console.log(formattedError);
+                return Promise.reject(formattedError)
+            }
+            errors.forEach(error => formattedError[error.field] = error.message)
 
-  errors.forEach(error => formattedError[error.field] = error.message)
-  // console.log(formattedError);
+            return Promise.reject(formattedError)
 
-        this.setState({
 
-      errors:formattedError
-
-      })
 
 }
 
