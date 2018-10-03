@@ -1,5 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import propTypes from 'prop-types'
 
 const Navbar = ({ authUser}) => {
 
@@ -51,7 +52,16 @@ const Navbar = ({ authUser}) => {
   </div>
 </nav>
 
-     )
+  )
 }
+
+Navbar.propTypes = {
+  authUser:propTypes.shape({
+  user:propTypes.shape({
+  name:propTypes.string
+  })
+ }).isRequired
+}
+
 
 export default Navbar

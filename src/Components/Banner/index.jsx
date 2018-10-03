@@ -1,4 +1,5 @@
 import React from 'react'
+import propTypes from 'prop-types'
 
 
 const Banner = ({backgroundImage, title, subtitle}) => {
@@ -17,5 +18,13 @@ return (
 
 
 }
+
+Banner.propTypes = {
+   backgroundImage:propTypes.string.isRequired,
+   title:propTypes.string.isRequired,
+   subtitle:propTypes.string.isRequired,
+}
+
+
 
 export default Banner
