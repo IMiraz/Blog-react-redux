@@ -6,7 +6,8 @@ class Login extends Component {
 
    state = {
       email:'',
-      password:''
+      password:'',
+      errors:{},
    }
 
    handerInputChange = (event) => {
@@ -39,7 +40,7 @@ handlerSubmit = async (event) => {
       <LoginForm
       handerInputChange={this.handerInputChange}
       handlerSubmit={this.handlerSubmit}
-      />
+      errors = {this.state.errors}/>
       )
    }
 }

@@ -31,6 +31,7 @@ class Signup extends Component {
 event.preventDefault();
  try {
        const user = await this.props.registerUser(this.state)
+       localStorage.setItem('user', JSON.stringify(user));
               this.props.setAuthUser(user)
               this.props.history.push('/')
 

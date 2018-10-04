@@ -2,8 +2,9 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import propTypes from 'prop-types'
+import Spinner from './../../Spinner/index'
 
-const Login = ({ handerInputChange, handlerSubmit }) => {
+const Login = ({ handerInputChange, handlerSubmit, errors, props }) => {
 
     return (
         <div className="mh-fullscreen bg-img center-vh p-20" style={{backgroundImage: 'url(assets/img/bg-girl.jpg)'}}>
@@ -20,6 +21,12 @@ const Login = ({ handerInputChange, handlerSubmit }) => {
           onChange={handerInputChange}
 
           />
+
+          {
+            errors.email &&
+                   <small className="text-danger">{errors.email}</small>
+
+                    }
       </div>
       <div className="form-group">
         <input
@@ -28,6 +35,12 @@ const Login = ({ handerInputChange, handlerSubmit }) => {
         name="password"
         onChange={handerInputChange}
          placeholder="Password" />
+
+         {
+          errors.password &&
+                 <small className="text-danger">{errors.password}</small>
+
+                  }
       </div>
       <div className="form-group flexbox py-10">
         <label className="custom-control custom-checkbox">
@@ -53,7 +66,8 @@ const Login = ({ handerInputChange, handlerSubmit }) => {
 
 Login.propTypes = {
   handerInputChange:propTypes.func.isRequired,
-  handlerSubmit:propTypes.func.isRequired
+  handlerSubmit:propTypes.func.isRequired,
+  errors:propTypes.objectOf(propTypes.string).isRequired
 }
 
 export default Login
