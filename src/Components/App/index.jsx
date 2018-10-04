@@ -36,12 +36,7 @@ class App extends Component {
                         authUser
                     })
 
-
-
                     }
-
-
-
 
         render () {
 
