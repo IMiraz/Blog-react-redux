@@ -9,8 +9,21 @@ export default class Articles {
 
     }
 
- createArticle = async (data) => {
- await this.uploadToCloudinary(data.image)
+ createArticle = async (data, token) => {
+
+ const image= await this.uploadToCloudinary(data.image)
+
+ const response = await axios.post(`${config.apiUrl}/articles`, {
+     title:data.title,
+    content:data.content,
+    category_id:data.category,
+    imageUrl: image.secure_url
+
+ }, {
+  headers:{
+Authorization:`Bearer ${token}`,
+  }
+ })
 }
 
 

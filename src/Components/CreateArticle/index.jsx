@@ -35,7 +35,19 @@ class CreateArticle  extends Component
 handlerSubmit = async  (event) => {
   event.preventDefault();
 
-  await this.props.createArticle(this.state)
+
+  try {
+
+    const  article = await this.props.createArticle(this.state, this.props.token)
+  this.props.history.push('/')
+  }
+    catch(errors) {
+      this.setState ( {
+         errors
+      })
+
+    }
+
 
 
 }

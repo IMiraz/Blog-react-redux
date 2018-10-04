@@ -64,7 +64,9 @@ class App extends Component {
                (props) =>
                          <Register {...props}
                       registerUser= {this.props.authService.registerUser}
-                setAuthUser={this.setAuthUser} /> } />
+                setAuthUser={this.setAuthUser}
+
+                 /> } />
            <Route path="/article/:slug" component={SingleArticle}/>
 
 
@@ -75,6 +77,7 @@ class App extends Component {
               getArticle= {this.props.aritclesService.getCategories}
              setAuthUser={this.setAuthUser}
              createArticle = {this.props.aritclesService.createArticle}
+             token = {this.state.authUser.token}
              /> }/>
 
            {
