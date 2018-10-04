@@ -9,8 +9,19 @@ class CreateArticle  extends Component
     image:null,
     title:'',
     content:'',
-   channel:null,
-   errors:{}
+    category:null,
+   errors:{},
+   categories:[]
+ }
+
+ async  componentWillMount () {
+      const categories= await this.props.getArticle()
+
+      this.setState ( {
+         categories
+      })
+
+
  }
 
  handerInputChange = (event) => {
@@ -21,8 +32,11 @@ class CreateArticle  extends Component
 
 }
 
-handlerSubmit =  (event) => {
+handlerSubmit = async  (event) => {
   event.preventDefault();
+
+  await this.props.createArticle(this.state)
+
 
 }
   render() {
@@ -31,6 +45,7 @@ handlerSubmit =  (event) => {
          <CreateArticleForm
          handerInputChange={this.handerInputChange}
          handlerSubmit = {this.handlerSubmit}
+         categories ={this.state.categories}
 
          />
 

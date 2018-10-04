@@ -62,11 +62,20 @@ class App extends Component {
          />
            <Route path="/signup" render={
                (props) =>
-               <Register {...props}
-                 registerUser= {this.props.authService.registerUser}
+                         <Register {...props}
+                      registerUser= {this.props.authService.registerUser}
                 setAuthUser={this.setAuthUser} /> } />
            <Route path="/article/:slug" component={SingleArticle}/>
-           <Route path="/articles/create" component={CreateArticle}/>>
+
+
+           <Route path="/articles/create" render={
+            (props) =>
+
+            <CreateArticle {...props}
+              getArticle= {this.props.aritclesService.getCategories}
+             setAuthUser={this.setAuthUser}
+             createArticle = {this.props.aritclesService.createArticle}
+             /> }/>
 
            {
               location.pathname !=="/login" && location.pathname !=="/signup" &&

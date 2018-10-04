@@ -1,7 +1,7 @@
 import React from 'react'
 import Banner from '../../Banner'
 
-const CreateArticleForm = ({handerInputChange , handlerSubmit}) =>
+const CreateArticleForm = ({handerInputChange , handlerSubmit, categories}) =>
 {
     return (
         <div>
@@ -14,7 +14,7 @@ const CreateArticleForm = ({handerInputChange , handlerSubmit}) =>
             <div className="container">
               <div className="row">
                 <div className="col-12 col-lg-12">
-                  <form className="p-30 bg-gray rounded" onSubmit={handlerSubmit} data-form="mailer">
+                  <form className="p-30 bg-gray rounded" onSubmit={handlerSubmit} >
                     <div className="row">
                       <div className="form-group col-md-12 my-5">
                         <input type="file" className="form-control" name="image" onChange={handerInputChange} />
@@ -23,10 +23,9 @@ const CreateArticleForm = ({handerInputChange , handlerSubmit}) =>
                         <input className="form-control form-control-lg" type="text" name="name" placeholder="Title"  name="title" onChange={handerInputChange}/>
                       </div>
                       <div className="form-group col-12 col-md-6">
-                        <select name="channel" onChange={handerInputChange} id className="form-control form-control-lg">
+                        <select name="category" onChange={handerInputChange} id className="form-control form-control-lg">
                           <option value>Select category</option>
-                          <option value>Vuejs</option>
-                          <option value>Reactjs</option>
+                        {categories.map(categorie =><option key={categorie.id} value={categorie.id} >{categorie.name}</option>)}
                         </select>
                       </div>
                     </div>
