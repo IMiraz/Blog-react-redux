@@ -14,15 +14,16 @@ class CreateArticle  extends Component
  }
 
  handerInputChange = (event) => {
+  // console.log(event.target.files)
   this.setState({
-[event.target.name]: event.target.value
+[event.target.name]: event.target.type === 'file'? event.target.files[0]:  event.target.value
 })
 
 }
 
 handlerSubmit =  (event) => {
   event.preventDefault();
-  console.log(this.state)
+
 }
   render() {
 
