@@ -1,6 +1,14 @@
 import axios from 'axios'
 import config from './../Components/config'
+import {validateAll} from 'indicative'
 export default class Articles {
+
+    async getArticles() {
+        const response = await axios.get(`${config.apiUrl}/articles`);
+
+        return response.data.data
+
+         }
 
     async getCategories () {
    const response = await axios.get(`${config.apiUrl}/categories`);
@@ -9,22 +17,50 @@ export default class Articles {
 
     }
 
- createArticle = async (data, token) => {
+    createArticle = async (data, token) => {
 
- const image= await this.uploadToCloudinary(data.image)
+        try {
+            if (!data.image) {
+                return Promise.reject([{
+                  message: 'The image is required.',
+                }]);
+              }
+          const rules = {
+            title: 'required',
+            content: 'required',
+            category: 'required',
+          };
 
- const response = await axios.post(`${config.apiUrl}/articles`, {
-     title:data.title,
-    content:data.content,
-    category_id:data.category,
-    imageUrl: image.secure_url
+          const messages = {
+            required: 'The {{ field }} is required.',
+          };
 
- }, {
-  headers:{
-Authorization:`Bearer ${token}`,
-  }
- })
-}
+          await validateAll(data, rules, messages);
+
+          const image = await this.uploadToCloudinary(data.image);
+          const response = await axios.post(`${config.apiUrl}/articles`, {
+            title: data.title,
+            content: data.content,
+            category_id: data.category,
+            imageUrl: image.secure_url,
+          }, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+
+
+          return response.data;
+
+
+        } catch (errors) {
+          if (errors.response) {
+            return Promise.reject(errors.response.data);
+          }
+
+          return Promise.reject(errors);
+        }
+      }
 
 
     async uploadToCloudinary(image) {

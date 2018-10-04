@@ -1,7 +1,7 @@
 import React from 'react'
 import Banner from '../../Banner'
 
-const CreateArticleForm = ({handerInputChange , handlerSubmit, categories}) =>
+const CreateArticleForm = ({handerInputChange , handlerSubmit, categories, errors}) =>
 {
     return (
         <div>
@@ -14,6 +14,7 @@ const CreateArticleForm = ({handerInputChange , handlerSubmit, categories}) =>
             <div className="container">
               <div className="row">
                 <div className="col-12 col-lg-12">
+                 {errors.map(error=><li key={errors.field}  className="list-group-item text-danger">{error.message}</li> )}
                   <form className="p-30 bg-gray rounded" onSubmit={handlerSubmit} >
                     <div className="row">
                       <div className="form-group col-md-12 my-5">

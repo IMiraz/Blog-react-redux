@@ -10,12 +10,12 @@ class CreateArticle  extends Component
     title:'',
     content:'',
     category:null,
-   errors:{},
+   errors:[],
    categories:[]
  }
 
  async  componentWillMount () {
-      const categories= await this.props.getArticle()
+      const categories= await this.props.getCategories()
 
       this.setState ( {
          categories
@@ -58,6 +58,8 @@ handlerSubmit = async  (event) => {
          handerInputChange={this.handerInputChange}
          handlerSubmit = {this.handlerSubmit}
          categories ={this.state.categories}
+         errors = {this.state.errors}
+
 
          />
 

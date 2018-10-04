@@ -52,7 +52,12 @@ class App extends Component {
                }
 
 
-           <Route exact path="/" component={Welcome}/>
+           <Route exact path="/"render={
+            (props) =>
+                      <Welcome {...props}
+
+                      getArticles= {this.props.aritclesService.getArticles}
+              /> }/>
 
            <Route path ="/login"  render = { (props) =>
             <Login {...props}
@@ -74,7 +79,7 @@ class App extends Component {
             (props) =>
 
             <CreateArticle {...props}
-              getArticle= {this.props.aritclesService.getCategories}
+              getCategories= {this.props.aritclesService.getCategories}
              setAuthUser={this.setAuthUser}
              createArticle = {this.props.aritclesService.createArticle}
              token = {this.state.authUser.token}
