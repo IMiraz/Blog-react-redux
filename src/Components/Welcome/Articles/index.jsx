@@ -4,7 +4,7 @@ import Article from './../../Article'
 import Banner from './../../Banner'
 
 
-const Articles  = ({ articles }) => {
+const Articles  = ({ articles , handlePagination, nextUrl, prevUrl }) => {
 
     return (
         <div>
@@ -25,11 +25,14 @@ const Articles  = ({ articles }) => {
               <hr />
             </div>))}
 <nav className="flexbox mt-50 mb-50">
-  <a className="btn btn-white disabled">
-    <i className="ti-arrow-left fs-9 mr-4" /> Newer</a>
-  <a className="btn btn-white" href="#">Older
-    <i className="ti-arrow-right fs-9 ml-4" />
+
+<a className={`btn btn-white ${prevUrl ? '' : 'disabled'}`} onClick={() => handlePagination(prevUrl)}>
+Preview Page
+    <i className="ti-arrow-left fs-9 ml-4" />
   </a>
+  <a className={`btn btn-white ${nextUrl ? '' : 'disabled'}`} onClick={() => handlePagination(nextUrl)}>
+    <i className="ti-arrow-right fs-9 mr-4" /> Next Page</a>
+
 </nav>
 
         </div>

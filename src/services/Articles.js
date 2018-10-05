@@ -3,9 +3,8 @@ import config from './../Components/config'
 import {validateAll} from 'indicative'
 export default class Articles {
 
-    async getArticles() {
-        const response = await axios.get(`${config.apiUrl}/articles`);
-
+    async getArticles(url = `${config.apiUrl}/articles`) {
+        const response = await axios.get(url);
         return response.data.data
 
          }

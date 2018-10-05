@@ -1,4 +1,5 @@
 import React from 'react'
+import {Router, Link} from 'react-router-dom'
 
 const Article = ({article }) => {
     return (
@@ -18,7 +19,7 @@ const Article = ({article }) => {
   <div className="card-block">
     <p className="text-justify">{`${article.content.substring(0, 90)}...`}</p>
     <p className="text-center mt-40">
-      <a className="btn btn-primary btn-round" href="blog-single.html">Read more</a>
+      <Link className="btn btn-primary btn-round" to={`article/${article.slug}`}>Read more</Link>
     </p>
   </div>
 </article>
