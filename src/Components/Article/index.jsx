@@ -16,10 +16,7 @@ const Article = ({article }) => {
     <img className="rounded" src={article.imageUrl} alt="..." />
   </a>
   <div className="card-block">
-    <p className="text-justify">Together. Great. So good was saying, that can't first let called air divide stars male isn't i. Herb third let
-      may fourth divide. Greater gathering land you'll i their beast have. She'd form sea it wherein fowl, spirit
-      creeping living. Likeness creepeth you hath heaven. Likeness, moveth fruitful behold. Open evening a air us
-      behold. Saying above moving second a subdue likeness after also second.</p>
+    <p className="text-justify">{`${article.content.substring(0, 90)}...`}</p>
     <p className="text-center mt-40">
       <a className="btn btn-primary btn-round" href="blog-single.html">Read more</a>
     </p>

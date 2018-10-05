@@ -8,6 +8,7 @@ class  Welcome extends Component {
 
     this.state = {
       articles: {},
+      loading:true
     };
   }
 

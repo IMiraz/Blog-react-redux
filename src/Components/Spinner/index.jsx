@@ -7,7 +7,6 @@ const Spinner  = () => {
 return (
     <div className="Classes.Loader">
 
-
     </div>
 )
 }

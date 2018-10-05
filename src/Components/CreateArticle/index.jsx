@@ -11,7 +11,8 @@ class CreateArticle  extends Component
     content:'',
     category:null,
    errors:[],
-   categories:[]
+   categories:[],
+   loading:false
  }
 
  async  componentWillMount () {
@@ -32,19 +33,20 @@ class CreateArticle  extends Component
 
 }
 
-handlerSubmit = async  (event) => {
+ handlerSubmit = async  (event) => {
   event.preventDefault();
 
-
   try {
-
     const  article = await this.props.createArticle(this.state, this.props.token)
+    this.setState({ loading:true })
   this.props.history.push('/')
   }
+
+
     catch(errors) {
-      this.setState ( {
-         errors
-      })
+      console.log(errors)
+
+      this.setState({ errors });
 
     }
 
@@ -59,10 +61,8 @@ handlerSubmit = async  (event) => {
          handlerSubmit = {this.handlerSubmit}
          categories ={this.state.categories}
          errors = {this.state.errors}
-
-
+         loading= {this.state.loading}
          />
-
     )
 
 

@@ -10,8 +10,8 @@
     height: 46px;
     margin: 1px;
     border-radius: 50%;
-    border: 5px solid #fff;
-    border-color: #fff transparent #fff transparent;
+    border: 5px solid rgb(107, 106, 106) transparent;
+    border-color: rgb(107, 106, 106) transparent rgb(107, 106, 106) transparent;
     animation: lds-dual-ring 1.2s linear infinite;
   }
   @keyframes Loader {
