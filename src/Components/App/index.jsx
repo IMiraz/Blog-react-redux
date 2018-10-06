@@ -13,7 +13,8 @@ import CreateArticle from '../CreateArticle'
 class App extends Component {
 
     state ={
-        authUser:null
+        authUser:null,
+        articles:[]
     }
 
 
@@ -38,6 +39,19 @@ class App extends Component {
 
                     }
 
+
+setArticles = (articles) =>
+{
+this.setState({
+     articles
+})
+
+}
+
+
+
+
+
         render () {
 
            const {location} = this.props;
@@ -57,6 +71,8 @@ class App extends Component {
                       <Welcome {...props}
 
                       getArticles= {this.props.aritclesService.getArticles}
+                      setArticles={this.setArticles}
+
               /> }/>
 
            <Route path ="/login"  render = { (props) =>
@@ -72,8 +88,12 @@ class App extends Component {
                 setAuthUser={this.setAuthUser}
                  /> } />
            <Route path="/article/:slug"
-           render = { (props) => <SingleArticle {...props}
-           getArticle={this.props.aritclesService.getAritcle}/>}/>
+           render = { (props) =>
+             <SingleArticle {...props}
+
+           getArticle={this.props.aritclesService.getAritcle}
+           articles={this.state.articles}
+           />}/>
 
 
            <Route path="/articles/create" render={

@@ -16,12 +16,14 @@ class  Welcome extends Component {
     const articles = await this.props.getArticles();
 
     this.setState({ articles, loading:false });
-    //this.props.setArticles(articles.data);
+    this.props.setArticles(articles.data);
+
   }
 
  handlePagination = async (url) => {
 const articles = await this.props.getArticles(url);
 this.setState({articles});
+this.props.setArticles(articles.data);
  }
 
   render() {

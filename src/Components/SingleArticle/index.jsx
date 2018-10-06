@@ -14,11 +14,25 @@ class  SingleArticle extends Component {
 
  async componentWillMount(slug) {
 
-    console.log(this.props)
+    //console.log(this.props)
+
+     const articleoptimaization = await this.props.articles.find(article => article.slug === this.props.match.params.slug)
+     console.log(articleoptimaization)
+
+     if(articleoptimaization) {
+
+      const article = await this.props.getArticle(this.props.match.params.slug)
+
+      this.setState({ article:articleoptimaization, loading:false })
+     }
+
+     else {
 
     const article = await this.props.getArticle(this.props.match.params.slug)
 
     this.setState({ article, loading:false })
+     }
+
 
   }
 

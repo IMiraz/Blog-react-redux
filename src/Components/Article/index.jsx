@@ -6,7 +6,7 @@ const Article = ({article }) => {
         <article className="mt-90">
   <header className="text-center mb-40">
     <h3>
-      <a href="blog-single.html">{article.title}</a>
+    <Link className="link-color-default fs-12" to={`article/${article.slug}`}>{article.title}</Link>
     </h3>
     <div className="link-color-default fs-12">
       <a href="#">{article.category.name}</a>,
