@@ -15,7 +15,7 @@ class  Welcome extends Component {
   async componentWillMount() {
     const articles = await this.props.getArticles();
 
-    this.setState({ articles });
+    this.setState({ articles, loading:false });
     //this.props.setArticles(articles.data);
   }
 
@@ -26,12 +26,25 @@ this.setState({articles});
 
   render() {
     return (
-      <Articles
+       <div>
+        {
+          !this.state.loading &&
+          <Articles
         articles={this.state.articles.data}
          nextUrl={this.state.articles.next_page_url}
           prevUrl={this.state.articles.prev_page_url}
         handlePagination={this.handlePagination}
       />
+        }
+
+         {
+           this.state.loading &&
+           <p style={{color:'black', textAlign:"center"}}>Loading ...</p>
+
+         }
+
+       </div>
+
     );
   }
 }

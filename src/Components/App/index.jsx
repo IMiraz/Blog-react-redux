@@ -70,9 +70,10 @@ class App extends Component {
                          <Register {...props}
                       registerUser= {this.props.authService.registerUser}
                 setAuthUser={this.setAuthUser}
-
                  /> } />
-           <Route path="/article/:slug" component={SingleArticle}/>
+           <Route path="/article/:slug"
+           render = { (props) => <SingleArticle {...props}
+           getArticle={this.props.aritclesService.getAritcle}/>}/>
 
 
            <Route path="/articles/create" render={

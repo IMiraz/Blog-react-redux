@@ -25,7 +25,6 @@ const Articles  = ({ articles , handlePagination, nextUrl, prevUrl }) => {
               <hr />
             </div>))}
 <nav className="flexbox mt-50 mb-50">
-
 <a className={`btn btn-white ${prevUrl ? '' : 'disabled'}`} onClick={() => handlePagination(prevUrl)}>
 Preview Page
     <i className="ti-arrow-left fs-9 ml-4" />
